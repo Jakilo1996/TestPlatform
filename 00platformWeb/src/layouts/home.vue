@@ -1,0 +1,29 @@
+<template>
+   <el-container>
+      <el-header class="bg-blue-300">
+        <f-header/>
+      </el-header>
+      <el-container>
+        <el-aside >
+            <f-menu/>
+           
+        </el-aside>
+        <el-main >
+            <f-tag-list/>
+            <router-view></router-view> 
+        </el-main>
+      </el-container>
+    </el-container>
+</template>
+
+<script setup>
+import FHeader from './components/FHeader.vue';
+import FTagList from './components/FTagList.vue';
+import FMenu from './components/FMenu.vue';
+</script>
+
+<style scoped>
+ .el-aside{
+        transition: all 0.2s;
+    }
+</style>

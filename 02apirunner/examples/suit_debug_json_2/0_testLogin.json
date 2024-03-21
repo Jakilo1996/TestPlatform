@@ -1,0 +1,15 @@
+{
+  "_desc": "this is json 注释 example",
+  "desc": "测试用例",
+  "jsondata": {
+    "Key1": "中文",
+    "Key2": "value2"
+  },
+  "steps": [
+    {
+      "url": "http://{{host}}/index.php?s=/api/user/login&application=app",
+      "method": "POST",
+      "pre_script": "res = aes_encrypt('1234567812345678','tony')  # 这里密钥的长度必须是16的倍数\nprint(res)"
+    }
+  ]
+}

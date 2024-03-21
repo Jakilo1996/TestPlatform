@@ -1,0 +1,18 @@
+ddts:
+- host: '111'
+  desc: 正确的用户名，正确的密码
+- host: '333'
+  desc: 正确的用户名，正确的密码
+- a: 1
+  host: '444'
+  desc: 正确的用户名，正确的密码
+desc: login1
+steps:
+- data:
+    bb: '22'
+  json: '{"ccc":"2222"}'
+  method: GET
+  params:
+    aa: '1'
+  pre_script: '123213123123'
+  url: '11232132'

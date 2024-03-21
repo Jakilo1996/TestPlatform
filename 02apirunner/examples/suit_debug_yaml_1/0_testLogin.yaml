@@ -1,0 +1,42 @@
+# 每组用例都有它自己的断言规则
+desc: 加密接口用例
+# 全局变量
+context:
+  host: shop-xo.hctestedu.com
+# 配置文件。 0代码
+steps:
+- url: "http://{{host}}/index.php?s=/api/user/login&application=app"
+  method: post
+  header:
+    - content-type: "application/x-www-form-urlencoded"
+  data:
+    type: username
+    pwd: "{{pwd}}"
+    accounts: "{{accounts}}"
+  pre_script: |
+    res = aes_encrypt('1234567812345678','tony')  # 这里密钥的长度必须是16的倍数
+    print(res)
+  post_script: |
+    result = sql_exec('mysql',{
+        "host": 'shop-xo.hctestedu.com',
+        "user": 'api_test',
+        "password": 'Aa9999!',
+        "db": 'shopxo_hctested'
+    },"""
+    SELECT * FROM `sxo_user` where username='{{accounts}}'
+    """)
+    # 加密后的用户名
+    context.update({"assert_userinfo": result[0]})
+  assert_options:
+  - errorMsg: token不存在
+    target: $.data.token
+    type: exists
+    value: ''
+  - errorMsg: 昵称判断
+    target: $.data.nickname
+    type: equals
+    value: "{{assert_userinfo.nickname}}"
+ddts:
+- accounts: lisi
+  pwd: 123456
+  desc: 正确的用户名，正确的密码

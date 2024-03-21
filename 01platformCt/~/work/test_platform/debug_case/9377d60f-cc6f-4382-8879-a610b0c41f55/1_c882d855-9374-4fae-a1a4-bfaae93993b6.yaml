@@ -1,0 +1,4 @@
+desc: 测试百度
+steps:
+- method: GET
+  url: www.baidu.com
