@@ -11,8 +11,8 @@
 from flask_script import Server,Manager
 
 # 导入蓝图管理
-from app import application, manage
-from jobs.bgScdController import background_scheduler_run
+from .app import application, manage
+from .jobs.bgScdController import background_scheduler_run
 import www
 
 
