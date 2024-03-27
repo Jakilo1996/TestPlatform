@@ -29,7 +29,7 @@ print(f'app:{current_dir}')
 # 导入配置信息
 from config.devSettings import Config
 
-from jobs.bgScdController import background_scheduler_run
+# from jobs.bgScdController import background_scheduler_run
 import www
 
 
