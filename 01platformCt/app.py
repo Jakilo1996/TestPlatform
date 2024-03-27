@@ -12,8 +12,22 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 # Flask-WTF 的 CSRF 保护机制
 from flask_wtf.csrf import CSRFProtect
+
+import sys
+import os
+
+# 获取当前脚本所在的目录
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 添加项目根目录报的导入
+sys.path.append(current_dir)
+
 # 导入配置信息
 from config.devSettings import Config
+
+from jobs.bgScdController import background_scheduler_run
+import www
+
 
 class Application(Flask):
     def __init__(self, import_name):
@@ -51,3 +65,4 @@ manage = Manager(application)
 
 if __name__ == '__main__':
     application.run()
+    background_scheduler_run()
