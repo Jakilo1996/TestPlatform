@@ -7,13 +7,13 @@ from flask_script import Manager
 from flask_cors import CORS
 # flask token 解决方案
 from flask_jwt_extended import JWTManager
-# 导入配置信息
-from config.devSettings import Config
+
 # flask 数据库迁移
 from flask_migrate import Migrate
 # Flask-WTF 的 CSRF 保护机制
 from flask_wtf.csrf import CSRFProtect
-
+# 导入配置信息
+from config.devSettings import Config
 
 class Application(Flask):
     def __init__(self, import_name):

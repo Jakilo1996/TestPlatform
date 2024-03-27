@@ -19,7 +19,7 @@ sys.path.append(current_dir)
 # 添加自定义包所在目录的相对路径
 # package_dir = os.path.join(current_dir, 'your_package')
 # sys.path.append(package_dir)
-
+print(current_dir)
 from flask_script import Server, Manager
 
 # 导入蓝图管理
