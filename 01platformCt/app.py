@@ -18,9 +18,13 @@ import os
 
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
+web_dir = os.path.join(current_dir, 'ct')
+common_dir = os.path.join(current_dir, 'common')
 # 添加项目根目录报的导入
 sys.path.append(current_dir)
+sys.path.append(web_dir)
+sys.path.append(common_dir)
+
 print(f'app:{current_dir}')
 # 导入配置信息
 from config.devSettings import Config
@@ -62,7 +66,7 @@ manage = Manager(application)
 # def hello_world():  # put application's code here
 #     return 'Hello World!'
 
-
+print('after app')
 if __name__ == '__main__':
     application.run()
     background_scheduler_run()
