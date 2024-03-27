@@ -34,3 +34,6 @@ result/
 /back.txt
 *results
 config.ini
+/00platformWeb/*
+!/00platformWeb/src/
+!/00platformWeb/dist
