@@ -13,6 +13,7 @@
 
 from apscheduler.schedulers.background import BackgroundScheduler
 # 定时清理 token
+print(f'after clean_expired_tokens_crontab')
 from web.utils.jwtUtil import clean_expired_tokens_crontab
 
 

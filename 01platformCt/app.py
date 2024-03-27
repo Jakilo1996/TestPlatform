@@ -21,7 +21,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 添加项目根目录报的导入
 sys.path.append(current_dir)
-
+print(f'app:{current_dir}')
 # 导入配置信息
 from config.devSettings import Config
 
