@@ -18,7 +18,7 @@ import os
 
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
-web_dir = os.path.join(current_dir, 'ct')
+web_dir = os.path.join(current_dir, 'web')
 common_dir = os.path.join(current_dir, 'common')
 # 添加项目根目录报的导入
 sys.path.append(current_dir)
