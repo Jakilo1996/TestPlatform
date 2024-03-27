@@ -36,5 +36,5 @@ result/
 config.ini
 /00platformWeb/*
 00platformWeb/*.json
-!/00platformWeb/src/
-!/00platformWeb/dist/
+!00platformWeb/src/
+!00platformWeb/dist/
