@@ -63,7 +63,7 @@ manage = Manager(application)
 
 # 设置数据库迁移
 # migrate = Migrate(application, db)
-@app.route('/')
+@application.route('/')
 def hello_world():  # put application's code here
     return 'Hello World!'
 
