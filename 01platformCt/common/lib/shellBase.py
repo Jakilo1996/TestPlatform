@@ -17,7 +17,7 @@ import subprocess
 import time
 import shutil
 
-from paramiko import SSHClient,AutoAddPolicy
+# from paramiko import SSHClient,AutoAddPolicy
 
 
 # 本地命令类
@@ -39,33 +39,33 @@ class Shell:
 
 
 # linux操作类
-class ConLinux:
-    def __init__(self, hostname, username, password=''):
-        self.shell = SSHClient()
-        # 取消安全认证
-        self.shell.set_missing_host_key_policy(AutoAddPolicy())
-        # 连接linux
-        print(f'准备连接{hostname}, {username}, {password}')
-        self.shell.connect(hostname=hostname, username=username, password=password)
-
-        self.channel = self.shell.invoke_shell()
-
-    def con_linux(self, command):
-        # 执行命令
-        stdin, stdout, stderr = self.shell.exec_command(command)
-        # 读取执行结果
-        result = stdout.read()
-        # 返回执行结果
-        return result
-
-    def invoke(self, command):
-        self.channel.send(command + '\n')
-        buff = ""
-        while not buff.strip(" ").endswith('2004h'):
-            time.sleep(1)
-            resp = self.channel.recv(9999).decode("ISO-8859-1")
-            buff += resp
-            print(resp)
-
-    def __del__(self):
-        self.shell.close()
+# class ConLinux:
+#     def __init__(self, hostname, username, password=''):
+#         self.shell = SSHClient()
+#         # 取消安全认证
+#         self.shell.set_missing_host_key_policy(AutoAddPolicy())
+#         # 连接linux
+#         print(f'准备连接{hostname}, {username}, {password}')
+#         self.shell.connect(hostname=hostname, username=username, password=password)
+#
+#         self.channel = self.shell.invoke_shell()
+#
+#     def con_linux(self, command):
+#         # 执行命令
+#         stdin, stdout, stderr = self.shell.exec_command(command)
+#         # 读取执行结果
+#         result = stdout.read()
+#         # 返回执行结果
+#         return result
+#
+#     def invoke(self, command):
+#         self.channel.send(command + '\n')
+#         buff = ""
+#         while not buff.strip(" ").endswith('2004h'):
+#             time.sleep(1)
+#             resp = self.channel.recv(9999).decode("ISO-8859-1")
+#             buff += resp
+#             print(resp)
+#
+#     def __del__(self):
+#         self.shell.close()
