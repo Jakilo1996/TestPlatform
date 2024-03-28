@@ -27,8 +27,9 @@ sys.path.append(common_dir)
 
 print(f'app:{current_dir}')
 # 导入配置信息
-from config.devSettings import Config
-
+# 开发配置
+# from config.devSettings import Config
+from config.testSettings import Config
 # from jobs.bgScdController import background_scheduler_run
 import www
 
