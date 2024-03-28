@@ -20,7 +20,7 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 web_dir = os.path.join(current_dir, 'web')
 common_dir = os.path.join(current_dir, 'common')
-# 添加项目根目录报的导入
+# 添加项目根目录包的导入
 sys.path.append(current_dir)
 sys.path.append(web_dir)
 sys.path.append(common_dir)
@@ -68,7 +68,6 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 
 
-print('after app')
 if __name__ == '__main__':
     application.run(host='0.0.0.0', port=5000, debug=False)
     # background_scheduler_run()

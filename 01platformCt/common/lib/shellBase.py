@@ -17,7 +17,7 @@ import subprocess
 import time
 import shutil
 
-import paramiko
+from paramiko import SSHClient,AutoAddPolicy
 
 
 # 本地命令类
@@ -41,9 +41,9 @@ class Shell:
 # linux操作类
 class ConLinux:
     def __init__(self, hostname, username, password=''):
-        self.shell = paramiko.SSHClient()
+        self.shell = SSHClient()
         # 取消安全认证
-        self.shell.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.shell.set_missing_host_key_policy(AutoAddPolicy())
         # 连接linux
         print(f'准备连接{hostname}, {username}, {password}')
         self.shell.connect(hostname=hostname, username=username, password=password)
