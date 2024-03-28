@@ -69,4 +69,4 @@ manage = Manager(application)
 print('after app')
 if __name__ == '__main__':
     application.run()
-    background_scheduler_run()
+    # background_scheduler_run()
