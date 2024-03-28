@@ -58,15 +58,17 @@ csrf = CSRFProtect(application)
 # 将 app 交给 manager 托管
 manage = Manager(application)
 
+
 # CORS(application, resources=r'/*', supports_credentials=True, origin='http://localhost:5173')
 
 # 设置数据库迁移
 # migrate = Migrate(application, db)
-# @app.route('/')
-# def hello_world():  # put application's code here
-#     return 'Hello World!'
+@app.route('/')
+def hello_world():  # put application's code here
+    return 'Hello World!'
+
 
 print('after app')
 if __name__ == '__main__':
-    application.run()
+    application.run(host='0.0.0.0', port=5000, debug=False)
     # background_scheduler_run()
