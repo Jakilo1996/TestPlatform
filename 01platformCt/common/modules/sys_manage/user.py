@@ -23,6 +23,7 @@ class User(db.Model):  # type: Model
     role = db.Column(db.SmallInteger)
     create_time = db.Column(db.DateTime, unique=True)
 
+# INSERT INTO t_user (username, password, role) VALUES ('jakilo', 'john@example.com', 1);
 
 # 定义 token 模型，这个其实是 session 的处理方案，token 不存入数据库中  弃用 session 方案
 # class Token(db.Model):  # type: Model
