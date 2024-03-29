@@ -14,7 +14,20 @@
 import logging
 
 
+def make_log_handler(file_handler, formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
+    """
+    返回日志句柄
+    """
+    _log_handler = logging.FileHandler(file_handler)
+    _formatter = logging.Formatter(formatter)
+    _log_handler.setFormatter(_formatter)
+
+
 class LogBase:
+    """
+    TODO 方法需要重写，没有返回 log_Handler
+    """
+
     def __init__(self, log_path):
         self.log_path = log_path
 
@@ -37,7 +50,6 @@ class LogBase:
         logger.addHandler(ch)
 
         if level == 'info':
-
             logger.info(message)
         elif level == 'debug':
             logger.debug(message)

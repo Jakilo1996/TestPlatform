@@ -46,6 +46,9 @@ class Application(Flask):
         jwt.init_app(self)
 
 
+# falsk 运行日志配置
+
+
 db = SQLAlchemy()
 # 实例化 jwt 生成请求 token
 jwt = JWTManager()
@@ -69,6 +72,17 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 
 
+# 日志管理
+# 平台接口访问日志
+PLATFORM_PROCESS_ACCESS_LOG_TAG: bool = application.config['PLATFORM_PROCESS_ACCESS_LOG_TAG']
+
+if PLATFORM_PROCESS_ACCESS_LOG_TAG:
+    try:
+        from web.utils.logHandler import create_platform_process_access_log
+        create_platform_process_access_log()
+    except:
+        raise ValueError('配置文件错误')
+
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=5000, debug=False)
+    application.run(host='0.0.0.0', port=5001, debug=False)
     # background_scheduler_run()

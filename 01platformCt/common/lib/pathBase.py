@@ -85,7 +85,30 @@ class PathOperation:
             raise ValueError(f'{path}文件路径不存在')
         return path
 
-    def make_dir_or_file(self, path: str) -> str:
+    @staticmethod
+    def make_dir_or_file(path):
+        def is_exist(dir_p):
+            if os.path.exists(dir_p):
+                return True
+            else:
+                return False
+
+        if '.' in path:
+            if os.path.isfile(path):
+                # 判断文件是否存在
+                return path
+            else:
+                if not is_exist(os.path.dirname(path)):
+                    os.makedirs(os.path.dirname(path))
+                    # 目录存在，则直接创建文件
+                with open(path, 'w') as fp:
+                    fp.close()
+        else:
+            if not is_exist(os.path.dirname(path)):
+                os.makedirs(path)
+        return path
+
+    def make_dir_or_file_proj(self, path: str) -> str:
         """
         # 声明一个函数，传入一个项目根目录下的目录或者文件路经，如果存在 就返回这个路径，如果不存在，就循环创建这个目录以及文件 并返回path
         :param path: 路径
@@ -190,7 +213,6 @@ class PathOperation:
             for file in files:
                 file_path = os.join(root, file)
                 yield file_path
-
 
 
 if __name__ == '__main__':
