@@ -48,10 +48,14 @@ class Application(Flask):
 
 
 # falsk 运行日志配置
+# 数据库配置
+db = SQLAlchemy()
+# 实例化 jwt 生成请求 token
+jwt = JWTManager()
 
 
 def create_app():
-    application = Application(__name__)
+    application = Application(__name__, db, jwt)
     # 设置允许请求跨域
     # CORS(application, resource=r'/*')
     import www
@@ -69,10 +73,6 @@ def create_app():
     #     return 'Hello World!'
     return application
 
-
-db = SQLAlchemy()
-# 实例化 jwt 生成请求 token
-jwt = JWTManager()
 
 application = create_app()
 CORS(application, resources=application.config.get('CORS_RESOURCES'),
