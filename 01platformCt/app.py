@@ -31,7 +31,7 @@ print(f'app:{current_dir}')
 # from config.devSettings import Config
 from config.testSettings import Config
 # from jobs.bgScdController import background_scheduler_run
-import www
+
 
 
 class Application(Flask):
@@ -55,6 +55,7 @@ jwt = JWTManager()
 application = Application(__name__)
 # 设置允许请求跨域
 # CORS(application, resource=r'/*')
+import www
 
 CORS(application, resources=application.config.get('CORS_RESOURCES'), origins=application.config.get('CORS_ORIGINS'))
 # Flask-WTF 的 CSRF 保护机制
@@ -67,9 +68,9 @@ manage = Manager(application)
 
 # 设置数据库迁移
 # migrate = Migrate(application, db)
-@application.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+# @application.route('/')
+# def hello_world():  # put application's code here
+#     return 'Hello World!'
 
 
 # 日志管理
