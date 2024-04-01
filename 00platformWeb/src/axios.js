@@ -5,7 +5,7 @@ import router from '~/router/index'
 
 const service = axios.create({
   // baseURL: "http://127.0.0.1:5000", // 本地配置
-  baseURL: "http:/47.109.47.162:80/", // 测试版本配置m,记得末尾要加/
+  // baseURL: "http:/47.109.47.162:80/", // 测试版本配置,记得末尾要加/
 })
 // 请求拦截器
 // 响应拦截器
