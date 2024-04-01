@@ -49,10 +49,6 @@ class Application(Flask):
 
 # falsk 运行日志配置
 
-db = SQLAlchemy()
-# 实例化 jwt 生成请求 token
-jwt = JWTManager()
-
 
 def create_app():
     application = Application(__name__)
@@ -60,42 +56,52 @@ def create_app():
     # CORS(application, resource=r'/*')
     import www
 
-    CORS(application, resources=application.config.get('CORS_RESOURCES'),
-         origins=application.config.get('CORS_ORIGINS'))
-    # Flask-WTF 的 CSRF 保护机制
-    CSRFProtect(application)
     # 将 app 交给 manager 托管
     # manage = Manager(application)
 
     # CORS(application, resources=r'/*', supports_credentials=True, origin='http://localhost:5173')
     # 蓝图过滤机制，指定route命令，去处理不同的请求
-    try:
-        from web.ct.debugController import route_debug
-        from web.ct.sys_manage import indexController, userController
-        from web.ct.api_manage import apiCaseController, apiProjectController, apiModuleController, \
-            apiCollectionController, \
-            apiHistoryController, apiInfoController
 
-        application.register_blueprint(route_debug)
-        application.register_blueprint(indexController.module_route)
-        application.register_blueprint(userController.module_route)
-        application.register_blueprint(apiProjectController.module_route)
-        application.register_blueprint(apiModuleController.module_route)
-        application.register_blueprint(apiHistoryController.module_route)
-        application.register_blueprint(apiCollectionController.module_route)
-        application.register_blueprint(apiInfoController.module_route)
-        application.register_blueprint(apiCaseController.module_route)
-
-
-    except Exception as e:
-        import traceback
-
-        traceback.print_exc()
     # 设置数据库迁移
     # migrate = Migrate(application, db)
     # @application.route('/')
     # def hello_world():  # put application's code here
     #     return 'Hello World!'
+    return application
+
+
+db = SQLAlchemy()
+# 实例化 jwt 生成请求 token
+jwt = JWTManager()
+
+application = create_app()
+CORS(application, resources=application.config.get('CORS_RESOURCES'),
+     origins=application.config.get('CORS_ORIGINS'))
+# Flask-WTF 的 CSRF 保护机制
+CSRFProtect(application)
+# 蓝图过滤机制，指定route命令，去处理不同的请求
+try:
+    from web.ct.debugController import route_debug
+    from web.ct.sys_manage import indexController, userController
+    from web.ct.api_manage import apiCaseController, apiProjectController, apiModuleController, \
+        apiCollectionController, \
+        apiHistoryController, apiInfoController
+
+    application.register_blueprint(route_debug)
+    application.register_blueprint(indexController.module_route)
+    application.register_blueprint(userController.module_route)
+    application.register_blueprint(apiProjectController.module_route)
+    application.register_blueprint(apiModuleController.module_route)
+    application.register_blueprint(apiHistoryController.module_route)
+    application.register_blueprint(apiCollectionController.module_route)
+    application.register_blueprint(apiInfoController.module_route)
+    application.register_blueprint(apiCaseController.module_route)
+
+
+except Exception as e:
+    import traceback
+
+    traceback.print_exc()
 
     # 日志管理
     # 平台接口访问日志
@@ -104,13 +110,11 @@ def create_app():
     if PLATFORM_PROCESS_ACCESS_LOG_TAG:
         try:
             from web.utils.logHandler import create_platform_process_access_log
+
             create_platform_process_access_log()
         except:
             raise ValueError('配置文件错误')
-    return application
-
 
 if __name__ == '__main__':
-    application = create_app()
     application.run(host='0.0.0.0', port=5001, debug=False)
     # background_scheduler_run()
