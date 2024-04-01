@@ -22,7 +22,7 @@ from web.utils.jwtUtil import JwtUtils
 from web.utils.dbHandler import DbHandler
 
 # 生成蓝图
-module_name = "CtUser"  # 模块名称
+module_name = "CtApiUser"  # 模块名称
 module_model: Type[User] = User
 module_route = Blueprint(f"route_{module_name}", __name__)
 

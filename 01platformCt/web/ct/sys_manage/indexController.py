@@ -43,7 +43,7 @@ def index():
 '''
 
 
-@module_route.route('/CtLogin', methods=['POST'])
+@module_route.route('/CtApiLogin', methods=['POST'])
 def ct_login():
     """
     拿到用户名和密码查数据库，怎么确定账号密码是不是对的
@@ -73,7 +73,7 @@ def ct_login():
         return RespModel.error_resp(msg='ct_login 参数错误')
 
 
-@module_route.route('/CtLogout', methods=['POST'])
+@module_route.route('/CtApiLogout', methods=['POST'])
 def ct_logout():
     """
     req_data: token_str
