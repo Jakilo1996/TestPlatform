@@ -34,7 +34,7 @@ result/
 /back.txt
 *results
 config.ini
-/00platformWeb/*
+00platformWeb/node_modules
 00platformWeb/*.json
 !00platformWeb/src/
 !00platformWeb/dist/
