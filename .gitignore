@@ -14,7 +14,6 @@
 /AUTHORS
 *log
 .DS_Store
-Pip*
 __pycache__/
 !single_api_demo
 /.DS_Store
@@ -37,3 +36,5 @@ config.ini
 00platformWeb/node_modules
 !00platformWeb/src/
 !00platformWeb/dist/
+*.bck
+*.sql
